@@ -43,17 +43,17 @@ public class DefaultRequest implements Request {
   private final InetAddress localAddress;
   private final HttpHeaders headers;
   private final List<Cookie> cookies;
-  private final byte[] byteData;
-  private final List<byte[]> compositeByteData;
-  private final String stringData;
-  private final ByteBuffer byteBufferData;
-  private final InputStream streamData;
-  private final BodyGenerator bodyGenerator;
-  private final List<Param> formParams;
-  private final List<Part> bodyParts;
+  private  byte[] byteData;
+  private  List<byte[]> compositeByteData;
+  private  String stringData;
+  private  ByteBuffer byteBufferData;
+  private  InputStream streamData;
+  private  BodyGenerator bodyGenerator;
+  private List<Param> formParams;
+  private  List<Part> bodyParts;
   private final String virtualHost;
   private final Realm realm;
-  private final File file;
+  private  File file;
   private final Boolean followRedirect;
   private final int requestTimeout;
   private final int readTimeout;
@@ -64,6 +64,46 @@ public class DefaultRequest implements Request {
   // lazily loaded
   private List<Param> queryParams;
 
+  
+  // New Constructor
+  public DefaultRequest(String method,
+                        Uri uri,
+                        InetAddress address,
+                        InetAddress localAddress,
+                        HttpHeaders headers,
+                        List<Cookie> cookies,
+                        String virtualHost,
+                        ProxyServer proxyServer,
+                        Realm realm,
+                        Boolean followRedirect,
+                        int requestTimeout,
+                        int readTimeout,
+                        long rangeOffset,
+                        Charset charset,
+                        ChannelPoolPartitioning channelPoolPartitioning,
+                        NameResolver<InetAddress> nameResolver) {
+                        NameResolver<InetAddress> nameResolver) {
+    this.method = method;
+    this.uri = uri;
+    this.address = address;
+    this.localAddress = localAddress;
+    this.headers = headers;
+    this.cookies = cookies;
+    this.virtualHost = virtualHost;
+    this.proxyServer = proxyServer;
+    this.realm = realm;
+    this.followRedirect = followRedirect;
+    this.requestTimeout = requestTimeout;
+    this.readTimeout = readTimeout;
+    this.rangeOffset = rangeOffset;
+    this.charset = charset;
+    this.channelPoolPartitioning = channelPoolPartitioning;
+    this.nameResolver = nameResolver;
+    
+  }
+  
+  
+  
   public DefaultRequest(String method,
                         Uri uri,
                         InetAddress address,
@@ -244,6 +284,37 @@ public class DefaultRequest implements Request {
   @Override
   public NameResolver<InetAddress> getNameResolver() {
     return nameResolver;
+  }
+    
+   public DefaultRequest withByteData(byte[] byteData) {
+    
+   }
+    
+   public void setCompositeByteData(List<byte[]> compositeByteData){
+
+   }
+  
+  public void withStringData(String stringData){
+    
+  }
+  
+  private  DefaultRequest withByteData(ByteBuffer byteBufferData){
+    
+    
+  }
+  
+  private  DefaultRequest withByteData(InputStream streamData){
+    
+  }
+  private  DefaultRequest withByteData(BodyGenerator bodyGenerator){
+    
+    
+  }
+  private DefaultRequest withByteData(List<Param> formParams){
+    
+  }
+  private  DefaultRequest withByteData(List<Part> bodyParts) {
+    
   }
 
   @Override
